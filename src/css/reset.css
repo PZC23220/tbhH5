@@ -1,0 +1,133 @@
+/* 重置样式 start */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+fieldset,
+lengend,
+button,
+input,
+textarea,
+th,
+td {
+    /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+}
+
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+}
+
+address,
+cite,
+dfn,
+em,
+var {
+    font-style: normal;
+}
+i {
+    font-style: normal;
+}
+
+/* 将斜体扶正 */
+
+img,
+input {
+    border: 0 none;
+}
+
+div,
+a {
+    outline: none
+}
+
+a {
+    text-decoration: none;
+}
+
+.hide {
+    display: none
+}
+
+html,body {
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    line-height: 1.5;
+    -webkit-overflow-scrolling: touch;
+}
+
+a,img,button,h4,div{
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-touch-callout: none;   
+    outline: none;
+    -webkit-user-select: none;
+}
+input,textarea,select {
+     -webkit-appearance: none;
+     text-decoration: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-touch-callout: none;   
+    outline: none;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #999;
+    font-weight: 200;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999;
+    font-weight: 200;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;
+    font-weight: 200;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #999;
+    font-weight: 200;
+}
+/*@font-face {
+    font-family: 'FiraSansCondensed-HeavyItalic'; 
+    src: url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.eot'); 
+    src: url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.eot?#iefix') format('embedded-opentype'), 
+         url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.woff') format('woff'), 
+         url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.ttf') format('truetype'), 
+         url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.svg#FiraSansCondensed-HeavyItalic') format('svg'); 
+}*/
+.vertical-align {
+    vertical-align: middle;
+    display: inline-block;
+}
+/* 重置样式 end */
