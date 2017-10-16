@@ -2,21 +2,23 @@
   "js": {
     "min": {
       "/js/login.js": "//js/login/login.js",
-      "/js/index.js": "//js/index/index.js",
+      "/js/questions.js": "//js/questions/questions.js",
       "/js/diamonds.js": "//js/diamonds/diamonds.js",
-      "/js/guide.js": "//js/guide/guide.js",
       "/js/friends.js": "//js/friends/friends.js",
-      "/js/questions.js": "//js/questions/questions.js"
+      "/js/guide.js": "//js/guide/guide.js",
+      "/js/index.js": "//js/index/index.js"
     },
     "debug": {
       "/js/login.js": "//js/login/login.js",
-      "/js/index.js": "//js/index/index.js",
+      "/js/questions.js": "//js/questions/questions.js",
       "/js/diamonds.js": "//js/diamonds/diamonds.js",
-      "/js/guide.js": "//js/guide/guide.js",
       "/js/friends.js": "//js/friends/friends.js",
-      "/js/questions.js": "//js/questions/questions.js"
+      "/js/guide.js": "//js/guide/guide.js",
+      "/js/index.js": "//js/index/index.js"
     }
   },
-  "css": {},
+  "css": {
+    "/css/login.css": "//css/login.css"
+  },
   "static_root": ""
 }
