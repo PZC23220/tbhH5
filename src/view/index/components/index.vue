@@ -243,6 +243,7 @@
       margin-left: -8vw;
       box-sizing: border-box;
       border: 2px solid #fff;
+      background:#fff2e5;
     }
     .tbh-friends-info {
       // display: inline-block;
