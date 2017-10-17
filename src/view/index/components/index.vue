@@ -30,7 +30,7 @@
                           <div class='tbh-friends-info'>
                             <p class='friends-name'>{{moments.friend.name}}</p>
                             <p class='friends-received'>{{moments.question.content}}</p>
-                            <div class="friends-diamonds"><img class="diamonds-pic-2 vertical-align" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_diamond_3.png" v-if="moments.replier?moments.replier.gender=='M':'false'"><img class="diamonds-pic-2 vertical-align" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_diamond_4.png" v-if="moments.replier?moments.replier.gender=='F':'true'"><p class='friends-from vertical-align' v-if="moments.replier">From a {{moments.replier.gender == "F" ? 'girl' : 'boy'}} in {{moments.question.dimension}} {{moments.replier[moments.question.dimension]}}</p></div>
+                            <div class="friends-diamonds"><img class="diamonds-pic-2 vertical-align" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_diamond_3.png" v-if="moments.replier?moments.replier.gender=='M':'false'"><img class="diamonds-pic-2 vertical-align" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_diamond_4.png" v-if="moments.replier?moments.replier.gender=='F':'true'"><p class='friends-from vertical-align' v-if="moments.replier">From a {{moments.replier.gender == "F" ? 'girl' : 'boy'}} in {{changeClass(moments.question.dimension)}} {{moments.replier[moments.question.dimension]}}</p></div>
                           </div>
                         </div>
                         <!-- <img src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_diamond_1 copy 6.png" class="tbh-diamond" v-if="moments.replier?moments.replier.gender=='M':'false'">
@@ -73,6 +73,12 @@
             }
         },
         methods: {
+          changeClass(val) {
+            if(val == 'clazz') {
+              return 'class';
+            }
+            return val;
+          },
           getUserInfo() {
             let self = this;
             if(self.idx < 2) {
