@@ -19,7 +19,7 @@
                 <input type="text" name="" class="inputs-title-2" v-model="loginInfo.name">
                 <div class="select-content">
                     <img src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_pull.png">
-                    <select class="inputs-title-2 select" v-model="loginInfo.gender">
+                    <select class="inputs-title-2 select" v-model="loginInfo.gender" @change="changeGender()">
                         <option value="M">Boy</option>
                         <option value="F">Gril</option>
                     </select>
@@ -206,6 +206,13 @@
            handleAvatar(res, file) {
               this.loginInfo.avatar = res.url;
            },
+          changeGender() {
+            if(this.loginInfo.gender == 'F') {
+                this.loginInfo.avatar = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_girl.png'
+            }else {
+                this.loginInfo.avatar = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_boy.png'
+            }
+          },
           loginUser() {
             let self = this;
             if(self.loginInfo.name  && self.loginInfo.school && self.loginInfo.grade && self.loginInfo.clazz && self.canLogin) {
