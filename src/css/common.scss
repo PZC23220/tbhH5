@@ -59,7 +59,7 @@
     line-height: 44px;
     box-sizing: border-box;
     width: 83.33333vw;
-    max-width: 417px;
+    max-width: 416px;
     margin: 10px auto 0;
     display: block;
     text-align: center;
@@ -70,6 +70,11 @@
     position: absolute;
     bottom: 4px;left: 50%;
     margin-left: -41.66666vw;
+}
+@media screen and (min-width: 500px) {
+  .bottom {
+    margin-left: - 208px;
+  }
 }
 .toast {
     position: absolute;
