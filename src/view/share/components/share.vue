@@ -13,20 +13,20 @@
             <div class="questions-container-content">
               <div class="friends-diamonds"><img class="diamonds-pic-2 vertical-align" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_diamond_3.png" v-if="sender?sender.gender=='M':'false'"><img class="diamonds-pic-2 vertical-align" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_diamond_4.png" v-if="sender?sender.gender=='F':'true'"><p class='friends-from vertical-align' v-if="sender">From a {{sender.gender == "F" ? 'girl' : 'boy'}} in {{changeClass(sender,receiver)}}</p></div>
               <div class='questions-title'>
-                <p>{{question.content?question.content:"Want to know what I've received in TBH?"}}</p>
+                <p>{{question.content?question.content:"Want to know what I've received in THB?"}}</p>
               </div>
               <div class='answers'>
                 <div class="answers-one-div">
-                  <p class='answers-one'>{{answersList?answersList:'tbh'}}</p>
+                  <p class='answers-one'>{{answersList?answersList:'thb'}}</p>
                 </div>
                 <div class="answers-one-div">
-                  <p class='answers-one active-else'>{{answersList?answersList:'tbh'}}<img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_chosen.png" alt="" class='answers-one-chosen'></p>
+                  <p class='answers-one active-else'>{{answersList?answersList:'thb'}}<img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_chosen.png" alt="" class='answers-one-chosen'></p>
                 </div>
                 <div class="answers-one-div">
-                  <p class='answers-one'>{{answersList?answersList:'tbh'}}</p>
+                  <p class='answers-one'>{{answersList?answersList:'thb'}}</p>
                 </div>
                 <div class="answers-one-div">
-                  <p class='answers-one'>{{answersList?answersList:'tbh'}}</p>
+                  <p class='answers-one'>{{answersList?answersList:'thb'}}</p>
                 </div>
               </div>
             </div>

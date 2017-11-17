@@ -18,10 +18,10 @@
               <div class='answers'>
                 <p class='answers-one' :class='[{"active-else":(!answerTap?currentAnswer == idx: false)}]' v-for="(answer,idx) in answersList" @click="bindAnswer(idx,answer.id)">{{answer.name}}</p>
               </div>
-              <div class='downloads' v-if="answersList.length <= 2">
-                <h5>No friends here ?</h5>
-                <button class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.thb" @click="shareTwitter()">Invite my friends</button>
-              </div>
+            </div>
+            <div class='downloads' v-if="answersList.length <= 2">
+              <h5>No friends here ?</h5>
+              <button class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.thb" @click="shareTwitter()">Invite my friends</button>
             </div>
           </div>
           <div class='questions-options'>
