@@ -59,6 +59,7 @@
     line-height: 44px;
     box-sizing: border-box;
     width: 83.33333vw;
+    max-width: 417px;
     margin: 10px auto 0;
     display: block;
     text-align: center;
@@ -221,4 +222,8 @@
     width: 29px;
     right: 22px;
 
+}
+.index {
+  max-width:500px;
+  margin: 0 auto;
 }

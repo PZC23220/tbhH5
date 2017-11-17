@@ -143,6 +143,7 @@
     .top-title {
       float: left;
       width: calc(100vw - 167px);
+      max-width: 333px;
       font-size: 14px;
       color: #333;
       line-height: 20px;
