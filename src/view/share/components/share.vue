@@ -180,7 +180,9 @@
     .questions-nums {
       border-radius: 50%;
       height: 16vw;
+      max-height: 80px;
       width: 16vw;
+      max-width: 80px;
       font-size: 12px;
       line-height: 16vw;
       color: #fff;
