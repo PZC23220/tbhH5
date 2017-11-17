@@ -70,7 +70,7 @@
               title: self.question.content,
               desc: '',
               img: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon.png',
-              url:`${location.origin}/share/index.html#/question=${self.userId}`
+              url:`${location.origin}/share/index.html#/?question=${self.userId}`
             })
             window.tbhBridge.shareTbh(str)
           },

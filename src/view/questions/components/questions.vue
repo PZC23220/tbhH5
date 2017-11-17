@@ -20,8 +20,8 @@
               </div>
             </div>
             <div class='downloads' v-if="answersList.length <= 2">
-              <h5>No friends here ?</h5>
-              <button class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.thb" @click="shareTwitter()">Invite my friends</button>
+              <h5>No schoolmates here？</h5>
+              <button class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.thb" @click="shareTwitter()">Invite my schoolmates</button>
             </div>
           </div>
           <div class='questions-options'>
@@ -78,7 +78,7 @@
         methods: {
           shareTwitter() {
             let str = JSON.stringify({
-              title: "Want to know what I've received in TBH? Play with me : https://play.google.com/store/apps/details?id=com.midnightlabs.thb",
+              title: "Want to know what I've received in THB? Play with me : https://play.google.com/store/apps/details?id=com.midnightlabs.thb",
               desc: '',
               img: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon.png',
               url:''

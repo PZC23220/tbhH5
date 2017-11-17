@@ -1,19 +1,19 @@
 import Vue from 'vue'
 
 import VueRouter from 'vue-router'
-import VueResource from 'vue-resource'// 注册两个插件
+// import VueResource from 'vue-resource'// 注册两个插件
 import routes  from './router.js'
 
 import main from './main.vue'
 
-Vue.use(VueResource);
+// Vue.use(VueResource);
 Vue.use(VueRouter);
 
 // 1. 开启debug模式
 Vue.config.debug = true
 
 // 2. 打开vue-resource的from-data模式，否则post过去的数据会是json形式，php无法识别
-Vue.http.options.emulateJSON = true;
+// Vue.http.options.emulateJSON = true;
 
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。

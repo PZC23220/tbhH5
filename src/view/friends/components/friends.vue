@@ -13,8 +13,8 @@
               <!-- 已关注列表 -->
              <div class='list-content' v-for="(friend,idx) in recommendations" v-if="idx < 2">
                 <div class='friends-list-content'>
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                  <img class="friend-avatar vertical-align" v-lazy="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
+                  <img class="friend-avatar vertical-align" v-lazy="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
                   <div class='friend-info vertical-align'>
                     <p class='friend-info-text friend-info-name'>{{friend.name}}</p>
                     <p class='friend-info-text friend-info-school'>{{friend.school}}</p>
@@ -31,8 +31,8 @@
               <!-- 已关注列表 -->
               <div class='list-content' v-for="(friend,idx) in friendsList">
                 <div class='friends-list-content'>
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                  <img class="friend-avatar vertical-align" v-lazy="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
+                  <img class="friend-avatar vertical-align" v-lazy="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
                   <div class='friend-info vertical-align'>
                     <p class='friend-info-text friend-info-name'>{{friend.name}}</p>
                     <p class='friend-info-text friend-info-school'>{{friend.school}}</p>
@@ -46,8 +46,8 @@
               <!-- 搜索已关注 -->
               <div class='list-content' v-for="(friend,idx) in following">
                 <div class='friends-list-content'>
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                  <img class="friend-avatar vertical-align" v-lazy="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
+                  <img class="friend-avatar vertical-align" v-lazy="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
                   <div class='friend-info vertical-align'>
                     <p class='friend-info-text friend-info-name'>{{friend.name}}</p>
                     <p class='friend-info-text friend-info-school'>{{friend.school}}</p>
@@ -59,8 +59,8 @@
               <!-- 搜索未关注 -->
               <div class='list-content' v-for="(friend,idx) in others">
                 <div class='friends-list-content'>
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                  <img class="friend-avatar vertical-align" v-lazy="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
+                  <img class="friend-avatar vertical-align" v-lazy="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
                   <div class='friend-info vertical-align'>
                     <p class='friend-info-text friend-info-name'>{{friend.name}}</p>
                     <p class='friend-info-text friend-info-school'>{{friend.school}}</p>
@@ -198,6 +198,9 @@
         let self = this;
         if(self.idx < 2) {
           http.get(`/users/friends?userId=${self.userId}`).then(function(res){
+            self.displayNone = true;
+            self.following = [];
+            self.others = [];
             if(res.friends.length > 0) {
               self.friendsList = res.friends;
               self.hasFriend = true;
@@ -235,17 +238,7 @@
             }
           })
         }else {
-          if (self.friendsList.length > 0) {
-              self.following = [];
-              self.others = [];
-              self.hasFriend = true;
-              self.displayNone = true;
-          }else {
-              self.following = [];
-              self.others = [];
-              self.hasFriend = false;
-              self.displayNone = true
-          }
+          self.getFriends();
         }
       
       },
@@ -258,7 +251,7 @@
         http.post(`/users/follow`,newdata).then(function(res){
           if(res.id) {
             self.bindSearch();
-            self.getFriends();
+            // self.getFriends();
             self.toast = toast;
             self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_tick.png';
             self.toastShow = true;

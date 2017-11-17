@@ -25,8 +25,8 @@
                 <ul class="friends-received-list">
                     <li class="tbh-friends-list" v-for="moments in friendsMoments" v-if="moments.question">
                         <div class='tbh-friend-content' v-if="moments.receiver">
-                          <img class="friends-avatar" :src="moments.receiver.avatar?moments.receiver.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="moments.receiver.gender == 'F'">
-                          <img class="friends-avatar" :src="moments.receiver.avatar?moments.receiver.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                          <img class="friends-avatar" v-lazy="moments.receiver.avatar?moments.receiver.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="moments.receiver.gender == 'F'">
+                          <img class="friends-avatar" v-lazy="moments.receiver.avatar?moments.receiver.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
                           <a :href="hosts+'/detail/index.html#/?question='+moments.id+'&html=index'+'&'+urlQuery" class='tbh-friends-info'>
                             <p class='friends-name'>{{moments.receiver.name}}</p>
                             <p class='friends-received'>{{moments.question.title}}</p>
@@ -34,10 +34,10 @@
                           </a>
                         </div>
                     </li>
-                    <div class='downloads' v-if="friendsMoments.length <= 0">
-                      <h5>No friends here ?</h5>
+                    <div class='downloads'>
+                      <h5 v-if="friendsMoments.length <= 0">No friends here ?</h5>
                       <a class="share"  :href="hosts+'/friends/index.html#/?userId=' + userinfo.id+'&did='+snsId" style="margin-bottom: 14px;">Add friends</a>
-                      <button class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.thb" @click="shareTwitter()">Invite my friends</button>
+                      <button v-if="friendsMoments.length <= 0" class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.thb" @click="shareTwitter()">Invite my friends</button>
                     </div>
                 </ul>
             </div>
@@ -74,7 +74,7 @@
         methods: {
           shareTwitter() {
             let str = JSON.stringify({
-              title: "Want to know what I've received in TBH? Play with me : https://play.google.com/store/apps/details?id=com.midnightlabs.thb",
+              title: "Want to know what I've received in THB? Play with me : https://play.google.com/store/apps/details?id=com.midnightlabs.thb",
               desc: '',
               img: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon.png',
               url:''

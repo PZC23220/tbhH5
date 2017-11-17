@@ -25,6 +25,7 @@
     "vue-clipboard": "0.0.1",
     "vue-image-lazyload": "^1.0.3",
     "vue-lazyload": "^1.0.6",
+    "vue-lazyload-img": "^2.0.3",
     "vue-resource": "^1.1.1",
     "vue-router": "^2.3.1",
     "vue-video-player": "^3.1.4",
