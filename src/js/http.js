@@ -1,8 +1,12 @@
 import axios from 'axios'
-
+var baseURL;
+if(location.host == 'tbh.midnightlabs.top:8060') {
+	baseURL = 'https://wechat-tbh.midnightlabs.top/tbh';
+}else {
+	baseURL = 'https://wechat-tbh.midnightlabs.top/test/tbh';
+}
 var instance = axios.create({
-    // baseURL: 'http://192.168.1.107:8031/japi/',
-    baseURL: 'https://wechat-tbh.midnightlabs.top/tbh',
+	baseURL: baseURL,
     timeout: 8000
 });
 instance.interceptors.response.use(function(response){

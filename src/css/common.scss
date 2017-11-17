@@ -143,6 +143,10 @@
         line-height: 44px;
     }
 }
+.tbh-friends {
+  max-height:calc(100vh - 300px);
+  overflow: auto;
+}
 .tbh-friends-list {
   position: relative;
   padding: 0 0 12px;
