@@ -120,11 +120,11 @@ input,textarea,select {
 }
 /*@font-face {
     font-family: 'FiraSansCondensed-HeavyItalic'; 
-    src: url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.eot'); 
-    src: url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.eot?#iefix') format('embedded-opentype'), 
-         url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.woff') format('woff'), 
-         url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.ttf') format('truetype'), 
-         url('http://photodebug.oss-cn-hongkong.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.svg#FiraSansCondensed-HeavyItalic') format('svg'); 
+    src: url('http://photoh5-us.oss-us-east-1.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.eot'); 
+    src: url('http://photoh5-us.oss-us-east-1.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.eot?#iefix') format('embedded-opentype'), 
+         url('http://photoh5-us.oss-us-east-1.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.woff') format('woff'), 
+         url('http://photoh5-us.oss-us-east-1.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.ttf') format('truetype'), 
+         url('http://photoh5-us.oss-us-east-1.aliyuncs.com/font/FiraSansCondensed-HeavyItalic/FiraSansCondensed-HeavyItalic.svg#FiraSansCondensed-HeavyItalic') format('svg'); 
 }*/
 .vertical-align {
     vertical-align: middle;

@@ -67,7 +67,7 @@
         // input 的id
         inputId: '',
         // 预览图片地址
-        imageDataList: ['http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_boy.png'],
+        imageDataList: ['http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'],
         // 文件名
         fileNameList: '',
         // 错误提示

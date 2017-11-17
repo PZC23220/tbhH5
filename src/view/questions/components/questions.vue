@@ -20,30 +20,30 @@
               </div>
               <div class='downloads' v-if="answersList.length <= 2">
                 <h5>No friends here ?</h5>
-                <button class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.tbhapp" @click="copySucess()">Invite my friends</button>
+                <button class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.thb" @click="shareTwitter()">Invite my friends</button>
               </div>
             </div>
           </div>
           <div class='questions-options'>
-            <div class='options-button' @click="bindSwitch()"><img class="options-image vertical-align" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_random copy.png" ><span class='options-image'>Shuffle</span></div>
-            <div class='options-button' @click="bindFilter()"><img class="options-image vertical-align" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_next copy.png"><span class='options-image'>Skip</span></div>
+            <div class='options-button' @click="bindSwitch()"><img class="options-image vertical-align" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_random copy.png" ><span class='options-image'>Shuffle</span></div>
+            <div class='options-button' @click="bindFilter()"><img class="options-image vertical-align" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_next copy.png"><span class='options-image'>Skip</span></div>
           </div>
         </div>
         <!-- 问题结果 -->
         <div class='play-result' v-else>
           <div class='play-success' v-if='CompleteSuccess'>
-            <img class="result-image" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_ok copy.png">
+            <img class="result-image" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_ok copy.png">
             <p class='success-tips'>WOW！<br>You’ve finished the <br>questions !!!</p>
             <a class="ok" :href="hosts+'/index/index.html#/?'+urlQuery">OK ! </a>
           </div>
           <div class='play-success' v-else>
-            <img class="result-image" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_error copy.png">
+            <img class="result-image" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_error copy.png">
             <p class='success-tips'>Sorry ！<br>Network Error …</p>
             <button class='ok' bindtap='bindRefresh'>Refresh</button>
           </div>
         </div>
         <div class="toast" :class="{'show':toastShow}"><span><img :src="toastLink"><br>{{toast}}</span></div>
-        <div class="loading" :class="{'hide':loadingShow}"><img src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/loading.gif"></div>
+        <div class="loading" :class="{'hide':loadingShow}"><img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/loading.gif"></div>
     </div>
 </template>
 <script>
@@ -72,10 +72,20 @@
                 loadingShow: false,
                 toast: '',
                 toastShow: false,
-                toastLink: 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_tick.png'
+                toastLink: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_tick.png'
             }
         },
         methods: {
+          shareTwitter() {
+            let str = JSON.stringify({
+              title: "Want to know what I've received in TBH? Play with me : https://play.google.com/store/apps/details?id=com.midnightlabs.thb",
+              desc: '',
+              img: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon.png',
+              url:''
+            })
+            console.log(str)
+            window.tbhBridge.shareTbh(str)
+          },
           getQuestionsList() {
             let self = this;
             http.get(`/questions?userId=${self.userId}`).then(function(res){
@@ -203,7 +213,7 @@
             copys.on('success', (e)=> {
                 self.toast = 'Share the download links to friends';
                 self.toastShow = true;
-                self.toastLink = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_tick.png'
+                self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_tick.png'
                 setTimeout(function(){
                     self.toast = '';
                     self.toastShow = false;
@@ -214,7 +224,7 @@
             copys.on('error', (e)=> {
                 self.toast = 'Sorry ！Network Error …';
                 self.toastShow = true;
-                self.toastLink = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_error_1.png'
+                self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_error_1.png'
                 setTimeout(function(){
                     self.toast = '';
                     self.toastShow = false;

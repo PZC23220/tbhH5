@@ -1,20 +1,24 @@
 {
   "js": {
     "min": {
-      "/js/login.js": "//js/login/login.js",
+      "/js/detail.js": "//js/detail/detail.js",
+      "/js/index.js": "//js/index/index.js",
       "/js/questions.js": "//js/questions/questions.js",
       "/js/diamonds.js": "//js/diamonds/diamonds.js",
+      "/js/share.js": "//js/share/share.js",
       "/js/friends.js": "//js/friends/friends.js",
       "/js/guide.js": "//js/guide/guide.js",
-      "/js/index.js": "//js/index/index.js"
+      "/js/login.js": "//js/login/login.js"
     },
     "debug": {
-      "/js/login.js": "//js/login/login.js",
+      "/js/detail.js": "//js/detail/detail.js",
+      "/js/index.js": "//js/index/index.js",
       "/js/questions.js": "//js/questions/questions.js",
       "/js/diamonds.js": "//js/diamonds/diamonds.js",
+      "/js/share.js": "//js/share/share.js",
       "/js/friends.js": "//js/friends/friends.js",
       "/js/guide.js": "//js/guide/guide.js",
-      "/js/index.js": "//js/index/index.js"
+      "/js/login.js": "//js/login/login.js"
     }
   },
   "css": {

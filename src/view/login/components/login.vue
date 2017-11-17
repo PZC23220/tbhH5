@@ -2,9 +2,9 @@
     <div class="login">
         <div class="login-welcome"><b class="vertical-align">WELCOME</b></div>
         <div class="choose-avatar">
-            <!-- <img src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_boy.png" class="avatar-priview"> -->
+            <!-- <img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png" class="avatar-priview"> -->
             <!-- <image-inputer :onChange="imgChange" placeholder="选择图片"></image-inputer> -->
-            <el-upload class="avatar-uploader avatar-priview-content" action="http://h3.groupy.cn:3000/api/fileupload" :show-file-list="false" :on-success="handleAvatar">
+            <el-upload class="avatar-uploader avatar-priview-content" action="https://wechat-tbh.midnightlabs.top/tbh/files/avatars" :show-file-list="false" :on-success="handleAvatar">
                 <img :src="loginInfo.avatar" class="avatar-priview">
                 <!-- <i v-else class="el-icon-plus avatar-uploader-icon"></i> -->
             </el-upload>
@@ -18,7 +18,7 @@
             <div class="input-enter">
                 <input type="text" name="" class="inputs-title-2" v-model="loginInfo.name">
                 <div class="select-content">
-                    <img src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_pull.png">
+                    <img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_pull.png">
                     <select class="inputs-title-2 select" v-model="loginInfo.gender" @change="changeGender()">
                         <option value="M">Boy</option>
                         <option value="F">Gril</option>
@@ -43,7 +43,12 @@
                 <span class="inputs-title-1">school</span>
             </div>
             <div class="input-enter">
-                <input type="text" name="" class="inputs-title-1" v-model="loginInfo.school">
+                <el-autocomplete
+                 class="inputs-title-1"
+                  v-model="loginInfo.school"
+                  :fetch-suggestions="querySearchAsync"
+                ></el-autocomplete>
+                <!-- <input type="text" name="" class="inputs-title-1" v-model="loginInfo.school"> -->
             </div>
         </div>
         <div class="input-content">
@@ -58,11 +63,11 @@
         </div>
         <div class="login-ok" @click="loginUser()">OK</div>
         <div class="toast" :class="{'show':toastShow}"><span><img :src="toastLink"><br>{{toast}}</span></div>
-        <div class="loading" :class="{'hide':loadingShow}"><img src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/loading.gif"></div>
+        <div class="loading" :class="{'hide':loadingShow}"><img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/loading.gif"></div>
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .login {
         width: 100vw;
         height: 100vh;
@@ -98,10 +103,11 @@
         height: 21.33333vw;
         border-radius: 50%;
         margin: 0 auto;
+        overflow:hidden;
     }
     .avatar-priview {
         width: 21.33333vw;
-        height: 21.33333vw;
+        min-height: 21.33333vw;
         border-radius: 50%;
     }
     .input-content {
@@ -153,6 +159,17 @@
     .inputs-title-3:not(:last-child) {
         margin-right: 1.38888vw;
     }
+    .el-input__inner {
+        width: 86.11111vw;
+        height: 44px;
+        line-height: 44px;
+        font-size: 16px;
+        color: #222222;
+        border-radius: 8px;
+        background: #fff;
+        border: none;
+        padding-left: 8px;
+    }
     .inputs-title-1 {
         width: 86.11111vw;
     }
@@ -189,28 +206,46 @@
                     grade: '',
                     clazz: '',
                     snsId: '',
-                    avatar: 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_boy.png'
+                    avatar: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'
                 },
                 toast: '',
                 toastShow: false,
                 canLogin: true,
                 loadingShow: true,
                 toastShow: false,
-                toastLink: 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_tick.png'
+                searchValue: '',
+                toastLink: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_tick.png'
             }
         },
         components: {
           ImageInputer
         },
         methods: {
+            _staticTrees() {
+
+            },
+            handleSelect(item) {
+                console.log(this.loginInfo.school)
+            },
+            querySearchAsync(queryString, cb) {
+                var self = this;
+
+                  http.get(`/misc/completion/school?limit=5&keyword=${queryString}`).then(function (res) {
+                    let arr = [];
+                    for(var i in res) {
+                        arr.push({"value":res[i]});
+                    }
+                    cb(arr)
+                  })
+            },
            handleAvatar(res, file) {
-              this.loginInfo.avatar = res.url;
+              this.loginInfo.avatar = res;
            },
           changeGender() {
-            if(this.loginInfo.gender == 'F') {
-                this.loginInfo.avatar = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_girl.png'
-            }else {
-                this.loginInfo.avatar = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_boy.png'
+            if(this.loginInfo.gender == 'F' && this.loginInfo.avatar== 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png') {
+                this.loginInfo.avatar = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'
+            }else if( this.loginInfo.avatar== 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png') {
+                this.loginInfo.avatar = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'
             }
           },
           loginUser() {
@@ -225,7 +260,7 @@
                         location.href = `http://${location.host}/index/index.html#/?userId=${res.id}&did=${res.snsId}`
                     }else {
                         self.toast = 'Sorry ！Network Error …';
-                        self.toastLink = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_error_1.png';
+                        self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_error_1.png';
                         self.toastShow = true;
                         setTimeout(function(){
                             self.toast = '';
@@ -243,7 +278,7 @@
                 });
             }else {
                 self.toast = 'Please improve the information！';
-                self.toastLink = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_alert.png';
+                self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_alert.png';
                 self.toastShow = true;
                 setTimeout(function(){
                     self.toast = '';

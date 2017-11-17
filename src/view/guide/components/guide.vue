@@ -5,8 +5,8 @@
             <p class='tbh'>tbh</p>
         </div>
         <div class='guide-pic'>
-            <img class="guide-pic-image-1" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_1.png">
-            <img class="guide-pic-image-2" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_2.png">
+            <img class="guide-pic-image-1" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_1.png">
+            <img class="guide-pic-image-2" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_2.png">
              <p class='guide-pic-text guide-pic-text-1'>Answer polls
              about friends</p>
              <p class='guide-pic-text guide-pic-text-2'>Responses are

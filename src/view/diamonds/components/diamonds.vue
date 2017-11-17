@@ -6,18 +6,38 @@
             <!-- <a class="top-right" :href="hosts+'/index/index.html'">Share</a> -->
         </div>
         <div class='diamonds'>
-          <p class='wow'>WOW ！ I’ve received</p>
           <div class='diamonds-images'>
             <div class='diamonds-content'>
-              <img class="diamonds-pic vertical-align" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_diamond_3.png">
-              <p>{{blueDiamonds}}</p>
+              <img class="diamonds-pic vertical-align" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_diamond_4.png">
+              <p>{{redDiamonds?redDiamonds:0}}</p>
             </div>
             <div class='diamonds-content'>
-              <img class="diamonds-pic vertical-align" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_diamond_4.png">
-              <p>{{redDiamonds}}</p>
+              <img class="diamonds-pic vertical-align" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_diamond_3.png">
+              <p>{{blueDiamonds?blueDiamonds:0}}</p>
             </div>
+            </div>
+            <div class="tbh-friends">
+              <ul class="friends-received-list">
+                  <li class="tbh-friends-list" v-for="moments in diamonds" v-if="moments.question">
+                      <div class='tbh-friend-content' v-if="moments.receiver">
+                        <img class="friends-avatar" :src="moments.receiver.avatar?moments.receiver.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="moments.receiver.gender == 'F'">
+                        <img class="friends-avatar" :src="moments.receiver.avatar?moments.receiver.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                        <img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_new.png" alt="" v-if="moments.new" class="moments-new">  
+                        <a :href="hosts+'/detail/index.html#/?question='+moments.id+'&html=diamonds'+'&'+urlQuery" class='tbh-friends-info'>
+                          <p class='friends-name'>{{moments.receiver.name}}</p>
+                            <p class='friends-received'>{{moments.question.title}}</p>
+                            <div class="friends-diamonds"><img class="diamonds-pic-2 vertical-align" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_diamond_3.png" v-if="moments.sender?moments.sender.gender=='M':'false'"><img class="diamonds-pic-2 vertical-align" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_diamond_4.png" v-if="moments.sender?moments.sender.gender=='F':'true'"><p class='friends-from vertical-align' v-if="moments.sender">From a {{moments.sender.gender == "F" ? 'girl' : 'boy'}} in {{changeClass(moments.sender,moments.receiver)}}</p></div>
+                        </a>
+                      </div>
+                      <!-- <img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_diamond_1 copy 6.png" class="tbh-diamond" v-if="moments.replier?moments.replier.gender=='M':'false'">
+                      <img src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_diamond_2 copy 7.png" class="tbh-diamond" v-if="moments.replier?moments.replier.gender=='F':'true'"> -->
+                  </li>
+                  <div class='downloads' v-if="diamonds.length <= 0">
+                    <h5>Haven’t received any diamonds ?</h5>
+                    <button class="share" data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.thb" @click="shareTwitter()">Invite my friends</button>
+                  </div>
+              </ul>
           </div>
-          <button class='share' data-clipboard-text="https://play.google.com/store/apps/details?id=com.midnightlabs.tbhapp" @click="copySucess()">Invite my friends</button>
         </div>
         <div class="toast" :class="{'show':toastShow}"><span><img :src="toastLink"><br>{{toast}}</span></div>
     </div>
@@ -36,22 +56,44 @@
                 urlQuery: '',
                 blueDiamonds: 0,
                 redDiamonds: 0,
+                diamonds: [],
                 idx: 0,
                 toast: '',
                 toastShow: false,
-                toastLink: 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_tick.png'
+                toastLink: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_tick.png'
             }
         },
         methods: {
+          shareTwitter() {
+            let str = JSON.stringify({
+              title: "Want to know what I've received in TBH? Play with me : https://play.google.com/store/apps/details?id=com.midnightlabs.thb",
+              desc: '',
+              img: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon.png',
+              url:''
+            })
+            console.log(str)
+            window.tbhBridge.shareTbh(str)
+          },
+          changeClass(sender,receiver) {
+            if(receiver.clazz == sender.clazz) {
+              return `class ${sender.clazz}`;
+            }else {
+              return `class ${sender.grade}`;
+            }
+          },
           getDiamonds() {
             let self = this;
             if(self.idx < 2) {
-              http.get(`/users/me?userId=${self.userId}`).then(function(res){
-                if(res.blueDiamonds) {
-                  self.blueDiamonds = res.blueDiamonds;
+              http.get(`/users/diamonds?userId=${self.userId}`).then(function(res){
+                console.log(res)
+                if(res.blue) {
+                  self.blueDiamonds = res.blue;
                 }
-                if(res.redDiamonds) {
-                  self.redDiamonds = res.redDiamonds;
+                if(res.red) {
+                  self.redDiamonds = res.red;
+                }
+                if(res.diamonds) {
+                  self.diamonds = res.diamonds;
                 }
                 
               }).catch(function(err){
@@ -68,7 +110,7 @@
             copys.on('success', (e)=> {
                 self.toast = 'Share the download links to friends';
                 self.toastShow = true;
-                self.toastLink = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_tick.png'
+                self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_tick.png'
                 setTimeout(function(){
                     self.toast = '';
                     self.toastShow = false;
@@ -79,7 +121,7 @@
             copys.on('error', (e)=> {
                 self.toast = 'Sorry ！Network Error …';
                 self.toastShow = true;
-                self.toastLink = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_error_1.png'
+                self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_error_1.png'
                 setTimeout(function(){
                     self.toast = '';
                     self.toastShow = false;
@@ -95,6 +137,8 @@
         created() {
             this.hosts = `http://${location.host}`;
             this.urlQuery = location.href.split('?')[1];
+            this.blueDiamonds = this.$route.query.blueDiamonds;
+            this.redDiamonds = this.$route.query.redDiamonds;
             this.userId = this.$route.query.userId;
             this.getDiamonds();
         }
@@ -113,14 +157,12 @@
     }
     /* pages/diamonds/diamonds.wxss */
     .diamonds {
-      background: #A341D3;
       height: 100vh;
       width: 100%;
       overflow: auto;
       padding: 16px 5.55555vw 0;
       box-sizing: border-box;
       color: #fff;
-      border-top: 1px solid rgba(255,255,255,0.3);
       text-align: center;
     }
     .wow {
@@ -142,31 +184,19 @@
       border-radius: 10px;
       padding: 25px 0 10px;
       font-size: 20px;
-      color: #E8009E;
+      color: #00B7D8;
       font-weight: 600;
     }
     .diamonds-content:first-child {
       float: left;
-      color: #00B7D8;
+      color: #E8009E;
     }
     .diamonds-pic {
-      width: 86px;
-      height: 79px;
+      width: 60px;
       display: block;
       margin: 0 auto 16px;
     }
-    .share {
-      border: 2px solid #FFFFFF;
-      border-radius: 8px;
-      box-sizing: border-box;
-      height: 55px;
-      line-height: 51px;
-      width: 77.77777vw;
-      background: none;
-      font-family: FiraSansCondensed-HeavyItalic;
-      font-size: 26px;
-      color: #FFFFFF;
-      letter-spacing: 1.2px;
-      font-style: italic;
+    .tbh-friends-info {
+      margin:  0;
     }
 </style>

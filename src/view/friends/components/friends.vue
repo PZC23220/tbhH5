@@ -7,8 +7,23 @@
         </div>
         <div class='add-friends'>
           <input type='text' placeholder='Search your friends' class='search-friends' v-model="searchValue" @input="bindSearch()"></input>
-          <div class='no-friend' v-if='!hasFriend'>
-            <p>Add friends and konw<br>what they received </p>
+          <div class='friends-list' v-if='!hasFriend'>
+            <div class="haved-friends">
+              <p class='friends-tips'>Recommended friends</p>
+              <!-- 已关注列表 -->
+             <div class='list-content' v-for="(friend,idx) in recommendations" v-if="idx < 2">
+                <div class='friends-list-content'>
+                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
+                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                  <div class='friend-info vertical-align'>
+                    <p class='friend-info-text friend-info-name'>{{friend.name}}</p>
+                    <p class='friend-info-text friend-info-school'>{{friend.school}}</p>
+                    <p class='friend-info-text friend-info-class'>Grade {{friend.grade}}，Class {{friend.clazz}}</p>
+                  </div>
+                  <img class="add-friends-icon" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_add copy.png" @click="bindFollow(friend.id,'Friends have been added!')">
+                </div>
+              </div>
+            </div>
           </div>
           <div class='friends-list' v-else>
             <div class="haved-friends" v-if="displayNone">
@@ -16,8 +31,8 @@
               <!-- 已关注列表 -->
               <div class='list-content' v-for="(friend,idx) in friendsList">
                 <div class='friends-list-content'>
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
+                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
                   <div class='friend-info vertical-align'>
                     <p class='friend-info-text friend-info-name'>{{friend.name}}</p>
                     <p class='friend-info-text friend-info-school'>{{friend.school}}</p>
@@ -31,27 +46,27 @@
               <!-- 搜索已关注 -->
               <div class='list-content' v-for="(friend,idx) in following">
                 <div class='friends-list-content'>
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
+                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
                   <div class='friend-info vertical-align'>
                     <p class='friend-info-text friend-info-name'>{{friend.name}}</p>
                     <p class='friend-info-text friend-info-school'>{{friend.school}}</p>
                     <p class='friend-info-text friend-info-class'>Grade {{friend.grade}}，Class {{friend.clazz}}</p>
                   </div>
-                  <img class="add-friends-icon" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_added copy.png" @click="bindFollow(friend.id,'Friends have been deleted!')">
+                  <img class="add-friends-icon" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_added copy.png" @click="bindFollow(friend.id,'Friends have been deleted!')">
                 </div>
               </div>
               <!-- 搜索未关注 -->
               <div class='list-content' v-for="(friend,idx) in others">
                 <div class='friends-list-content'>
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
-                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/pic_boy.png'" v-else>
+                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_girl.png'" v-if="friend.gender == 'F'">
+                  <img class="friend-avatar vertical-align" :src="friend.avatar?friend.avatar:'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/pic_boy.png'" v-else>
                   <div class='friend-info vertical-align'>
                     <p class='friend-info-text friend-info-name'>{{friend.name}}</p>
                     <p class='friend-info-text friend-info-school'>{{friend.school}}</p>
                     <p class='friend-info-text friend-info-class'>Grade {{friend.grade}}，Class {{friend.clazz}}</p>
                   </div>
-                  <img class="add-friends-icon" src="http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_add copy.png" @click="bindFollow(friend.id,'Friends have been added!')">
+                  <img class="add-friends-icon" src="http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_add copy.png" @click="bindFollow(friend.id,'Friends have been added!')">
                 </div>
               </div>
             </div>
@@ -164,6 +179,7 @@
           hosts: 'http://tbh.groupy.vip',
           userInfo: {},
           friendsList: [],
+          recommendations: [],
           hasFriend: false,
           following: [],
           others: [],
@@ -171,7 +187,7 @@
           searchValue: '',
           toast: '',
           toastShow: false,
-          toastLink: 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_tick.png',
+          toastLink: 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_tick.png',
           userId: '',
           urlQuery: '',
           idx: 0
@@ -182,11 +198,13 @@
         let self = this;
         if(self.idx < 2) {
           http.get(`/users/friends?userId=${self.userId}`).then(function(res){
-            if(res.length>0) {
-              self.friendsList = res;
+            if(res.friends.length > 0) {
+              self.friendsList = res.friends;
               self.hasFriend = true;
             }else {
               self.friendsList = [];
+              let arr = res.recommendations.sort(function(){ return 0.5 - Math.random(); }); 
+              self.recommendations = arr;
               self.hasFriend = false;
             }
             
@@ -242,7 +260,7 @@
             self.bindSearch();
             self.getFriends();
             self.toast = toast;
-            self.toastLink = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_tick.png';
+            self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_tick.png';
             self.toastShow = true;
             setTimeout(function(){
               self.toast = '';
@@ -250,7 +268,7 @@
             },1500)
           }else {
             self.toast = 'Sorry ！Network Error …';
-            self.toastLink = 'http://photodebug.oss-cn-hongkong.aliyuncs.com/tbh/icon_error_1.png';
+            self.toastLink = 'http://photoh5-us.oss-us-east-1.aliyuncs.com/tbh/icon_error_1.png';
             self.toastShow = true;
             setTimeout(function(){
               self.toast = '';
@@ -267,8 +285,6 @@
         this.urlQuery = location.href.split('?')[1];
         this.userId = this.$route.query.userId;
         this.getFriends();
-        // var userinfo = localStorage.getItem('userinfo');
-        // this.userinfo = JSON.parse(userinfo);
     }
   }
 </script>

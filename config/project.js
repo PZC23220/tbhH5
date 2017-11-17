@@ -32,6 +32,8 @@ module.exports = {
         friends: './src/view/friends', 
         diamonds: './src/view/diamonds', 
         questions: './src/view/questions',
-        guide: './src/view/guide'
+        guide: './src/view/guide',
+        detail: './src/view/detail',
+        share: './src/view/share'
     },
 };
