@@ -155,7 +155,9 @@
           // 刷新列表
           bindRefresh() {
             var self = this;
+            self.loadingShow = false;
             http.get('/questions?userId=' + self.userId).then(function (res) {
+              self.loadingShow = true;
               if (res[0].question) {
                   self.answerTap = true;
                   self.currentAnswer = 4;
