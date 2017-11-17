@@ -190,6 +190,14 @@
       margin-left: -8vw;
       border:  1px solid #fff;
     }
+    @media screen and (min-width: 500px) {
+      .questions-nums {
+       margin-left: -40px;
+      }
+      .questions-container-content,.questuins-cotainer {
+        padding-top:  40px;
+      }
+    }
     .current-num {
       font-size: 24px;
       font-weight: 600;
